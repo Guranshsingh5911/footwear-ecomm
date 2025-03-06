@@ -55,10 +55,7 @@ DB_PASSWORD=yourpassword
 DB_NAME=ecommerce_db
 JWT_SECRET=your-secret-key
 ```
-#### Run database migrations:
-```sh
-npx sequelize db:migrate
-```
+
 #### Start the backend server:
 ```sh
 npm start
