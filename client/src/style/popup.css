@@ -1,0 +1,239 @@
+.popup {
+    background-color: #ffffff;
+    z-index: 202;
+    position: fixed;
+    height: 100%;
+    max-width: 630px;
+    max-height: 480px;
+    width: 100%;
+    margin: 0 auto;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+    padding: 62px 69px 91px 69px;
+}
+
+.popup_inner {
+    position: relative;
+}
+
+.close_btn {
+    position: absolute;
+    right: 0;
+}
+
+.service-title {
+    height: 65px;
+    width: 630px;
+    border-bottom: 1px solid #e7e7e7e7;
+    padding: 0 0 24px 0;
+}
+.service-items {
+    height: 360px;
+    width: 630px;
+}
+
+.service-items > .phone {
+    height: 61px;
+}
+
+.service-items > .email {
+    height: 118px;
+    display: flex;
+}
+
+
+.service-items > .live-chat {
+    height: 81px;
+}
+
+.service-items > .phone,
+.service-items > .email {
+    width: 630px;
+    border-bottom: 1px solid #e7e7e7e7;
+}
+
+.phone {
+    display:flex;
+}
+.phone > div:nth-child(2) {
+    width: 210px;
+    height: 61px;
+    display: flex;
+    align-items: center;
+}
+
+.phone > div:nth-child(2) > div {
+    width: 200px;
+    height: 36px;
+    font-family: Futura, Futura, "Malgun Gothic", Dotum, sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 18px;
+}
+
+
+.service-title > h1 {
+    font-family: Futura, Futura, "Malgun Gothic", Dotum, sans-serif;
+    font-size: 36px;
+    font-weight: 200;
+    letter-spacing: 4.5px;
+    line-height: 38px;
+    text-align: center;
+    
+    height: 67px;
+    width: 630px;
+    padding: 0px 0px 24px;
+    position: relative;
+}
+
+.service-title > h1 > span {
+    font-family: Futura, Futura, "Malgun Gothic", Dotum, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 29px;
+    text-align: center;
+    vertical-align: baseline;
+    
+    height: 29px;
+    width: 630px;
+    margin: 0px;
+    padding: 0px;
+
+    display: block;
+    
+}
+
+.service-items > h2 {
+    font-family: Futura, Futura, "Malgun Gothic", Dotum, sans-serif;
+	font-size: 22px;
+    font-weight: 200;
+    line-height: 24px;
+    text-align: start;
+    vertical-align: baseline;
+
+    height: 24px;
+    width: 630px;
+    margin: 28px 0;
+
+    display:block;
+    letter-spacing: 0.7;
+}
+.phone , .email {
+    margin-bottom: 24px;
+}
+.phone > div:nth-child(1) > h3 , .email > div:nth-child(1) > h3 ,
+.live-chat > div:nth-child(1) > h3 {
+	font-family: Futura, Futura, "Malgun Gothic", Dotum, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-variant: none;
+	font-weight: 400;
+	letter-spacing: 2px;
+	line-height: 12px;
+	text-decoration: none solid rgb(0, 0, 0);
+	text-align: left;
+	text-transform: uppercase;
+	vertical-align: baseline;
+	white-space: normal;
+	height: 12px;
+	width: 100%;
+    max-width: 420px;
+
+    margin: 0 0 4px 0;
+}
+
+.phone > div:nth-child(1) > p {
+    font-family: Futura, Futura, "Malgun Gothic", Dotum, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    line-height: 20px;
+    text-align: left;
+    vertical-align: baseline;
+
+    height: 20px;
+    width: 420px;
+    margin: 0px 0px 10px;
+}
+
+.email > div:nth-child(1) > p {
+    font-family: Futura, Futura, "Malgun Gothic", Dotum, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    line-height: 20px;
+    text-align: left;
+    height: 80px;
+    width: 420px;
+    margin: 0px 0px 10px;
+}
+
+.email > div:nth-child(2) > a {
+    color: #1b1b1b;
+    box-sizing: border-box;
+    display: flex;
+
+    width: 234px;
+    height: 40px;
+
+    padding: 0 10;
+    margin: 2px 2px 2px 2px;
+
+    border: 2px solid #000;
+
+    font-family: Futura, Futura, "Malgun Gothic", Dotum, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 13px;
+    text-align: center;
+    border: 2px solid #000;
+    align-items: center;
+    justify-content: center;
+}
+
+.email > div:nth-child(2) > a:hover {
+    border: 2px solid rgb(153, 153, 153);
+}
+
+.live-chat > div:nth-child(1) > p {
+    height: 20px;
+    width: 420px;
+    margin: 0 0 10px 0;
+    line-height: 20px;
+    font-family: Futura, Futura, "Malgun Gothic", Dotum, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.5;
+    text-align: left;
+}
+
+.live-chat {
+    display:flex;
+    align-items: center;
+}
+
+.live-chat > div:nth-child(2) > button {
+    background: #e5dfd9;
+    color: #999;
+    font-family: Futura,Futura,"Malgun Gothic",Dotum,sans-serif;
+    box-sizing: border-box;
+    font-weight: 400;
+    display: inline-block;
+    height: 40px;
+    letter-spacing: 1px;
+    line-height: 36px;
+    min-width: 234px;
+    padding: 0 10px;
+    text-align: center;
+    border: none;
+}
+
+.close-btn {
+    position: fixed;
+    right: 22px;
+    top: 22px;
+}

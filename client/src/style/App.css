@@ -1,0 +1,14 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+ul {
+  list-style: none;
+}
+body {
+  margin: 0 0 0 0;
+}
+a {
+  font-variant-ligatures: none;
+  text-decoration: none solid rgb(255, 255, 255);
+}
