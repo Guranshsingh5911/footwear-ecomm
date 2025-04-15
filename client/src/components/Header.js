@@ -117,7 +117,7 @@ const Header = props => {
 						headerP >= 149 ? 'hidden gucci-logo' : 'gucci-logo'
 					}
 				>
-					<a tabindex="5" href="/" className="logo">
+					<a tabIndex="5" href="/" className="logo">
 						FootWearCart
 					</a>
 				</div>
