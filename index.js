@@ -12,6 +12,7 @@ import orderRoutes from './routes/orderRoutes.js';
 import dbConnection from './config/database.js';
 
 const app = express();
+const path = require('path');
 
 app.use(cors());
 app.use(express.json());
@@ -20,6 +21,12 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
 	res.json({ message: 'Welcome to backend application.' });
 });
+
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
 
 app.use('/api/users', authRoute);
 app.use('/api/orders', orderRoutes);
