@@ -40,7 +40,7 @@ http://localhost:5000/api/products/6615d284876acf9eebcd7891
 *POST*  
 URL:
 
-http://localhost:5000/api/users
+http://localhost:8000/api/users
 
 
 *Body (JSON):*
@@ -60,7 +60,7 @@ json
 *POST*  
 URL:
 
-http://localhost:5000/api/users/login
+http://localhost:8000/api/users/login
 
 
 *Body (JSON):*

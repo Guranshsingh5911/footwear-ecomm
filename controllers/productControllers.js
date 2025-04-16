@@ -1,4 +1,5 @@
 import asyncHandler from 'express-async-handler';
+import { Op } from 'sequelize';
 import { Product, Review } from '../models/productModel.js';
 
 // @desc Fetch all products
@@ -54,16 +55,36 @@ const deleteProduct = asyncHandler(async (req, res) => {
 // @route POST /api/products
 // @access Private/Admin
 const createProduct = asyncHandler(async (req, res) => {
+	const {
+		name,
+		price,
+		image,
+		brand,
+		category,
+		description,
+		countInStock,
+		size,
+		color,
+		sex
+	} = req.body;
+
+	if (!name || !price || !image || !category || !description) {
+		res.status(400);
+		throw new Error('Missing required fields');
+	}
+
 	const product = await Product.create({
-		name: 'Sample name',
-		price: 0,
-		userId: req.user.id,
-		image: '/images/sample.jpg',
-		brand: 'Sample brand',
-		category: 'Sample category',
-		countInStock: 0,
-		numReviews: 0,
-		description: 'Sample description'
+		name,
+		price,
+		image,
+		brand,
+		category,
+		description,
+		countInStock,
+		size: size || 'M',
+		color: color || 'Black',
+		sex: sex || 'Men',
+		userId: req.user.id
 	});
 
 	res.status(201).json(product);
@@ -73,18 +94,32 @@ const createProduct = asyncHandler(async (req, res) => {
 // @route PUT /api/products/:id
 // @access Private/Admin
 const updateProduct = asyncHandler(async (req, res) => {
-	const { name, price, description, image, brand, category, countInStock } =
-		req.body;
+	const {
+		name,
+		price,
+		description,
+		image,
+		brand,
+		category,
+		countInStock,
+		size,
+		color,
+		sex
+	} = req.body;
+
 	const product = await Product.findByPk(req.params.id);
 
 	if (product) {
-		product.name = name;
-		product.price = price;
-		product.description = description;
-		product.image = image;
-		product.brand = brand;
-		product.category = category;
-		product.countInStock = countInStock;
+		product.name = name || product.name;
+		product.price = price || product.price;
+		product.description = description || product.description;
+		product.image = image || product.image;
+		product.brand = brand || product.brand;
+		product.category = category || product.category;
+		product.countInStock = countInStock || product.countInStock;
+		product.size = size || product.size;
+		product.color = color || product.color;
+		product.sex = sex || product.sex;
 
 		await product.save();
 		res.json(product);
@@ -99,40 +134,60 @@ const updateProduct = asyncHandler(async (req, res) => {
 // @access Private
 const createProductReview = asyncHandler(async (req, res) => {
 	const { rating, comment } = req.body;
+
 	const product = await Product.findByPk(req.params.id);
 
-	if (product) {
-		const alreadyReviewed = await Review.findOne({
-			where: { productId: req.params.id, userId: req.user.id }
-		});
-
-		if (alreadyReviewed) {
-			res.status(400);
-			throw new Error('Product already reviewed');
-		}
-
-		const review = await Review.create({
-			name: req.user.name,
-			rating: Number(rating),
-			comment,
-			userId: req.user.id,
-			productId: req.params.id
-		});
-
-		product.numReviews += 1;
-		product.rating =
-			(product.rating * (product.numReviews - 1) + review.rating) /
-			product.numReviews;
-
-		await product.save();
-		res.status(201).json({ message: 'Review added' });
-	} else {
+	if (!product) {
 		res.status(404);
 		throw new Error('Product not found');
 	}
+
+	const alreadyReviewed = await Review.findOne({
+		where: {
+			productId: req.params.id,
+			userId: req.user.id
+		}
+	});
+
+	if (alreadyReviewed) {
+		res.status(400);
+		throw new Error('Product already reviewed');
+	}
+
+	const review = await Review.create({
+		name: req.user.name,
+		rating: Number(rating),
+		comment,
+		userId: req.user.id,
+		productId: req.params.id
+	});
+
+	// Recalculate average rating
+	const reviews = await Review.findAll({ where: { productId: req.params.id } });
+	const totalReviews = reviews.length;
+	const avgRating =
+		reviews.reduce((acc, item) => acc + item.rating, 0) / totalReviews;
+
+	product.numReviews = totalReviews;
+	product.rating = avgRating;
+	await product.save();
+
+	res.status(201).json({ message: 'Review added' });
 });
 
-// @desc Get top rated products
+// @desc Get all reviews for a product
+// @route GET /api/products/:id/reviews
+// @access Public
+const getProductReviews = asyncHandler(async (req, res) => {
+	const reviews = await Review.findAll({
+		where: { productId: req.params.id },
+		order: [['createdAt', 'DESC']]
+	});
+
+	res.json(reviews);
+});
+
+// @desc Get top-rated products
 // @route GET /api/products/top
 // @access Public
 const getTopProducts = asyncHandler(async (req, res) => {
@@ -150,5 +205,7 @@ export {
 	deleteProduct,
 	createProduct,
 	updateProduct,
-	createProductReview
+	createProductReview,
+	getProductReviews,
+	getTopProducts
 };
