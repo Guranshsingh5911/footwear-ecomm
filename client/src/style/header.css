@@ -58,7 +58,8 @@
   
     color: #e5dfd9;
   
-    font-size: 11px;
+    font-size: 13px;
+    padding-bottom: 10px;
     font-family: Futura, Futura, "Malgun Gothic", Dotum, sans-serif;
     font-style: normal;
     font-variant: normal;
@@ -72,6 +73,7 @@
     vertical-align: baseline;
     white-space: normal;
     word-spacing: 0px;
+    cursor: pointer;
   }
   
   .user-menu-bar {
@@ -86,8 +88,9 @@
     position: relative;
     float: right;
     padding-right: 22px;
-    font-size: 11px;
+    font-size: 15px;
     color: #e5dfd9;
+    text-decoration: none;
   }
   
   /* serach icon menu bar style */

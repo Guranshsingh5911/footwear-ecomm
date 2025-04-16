@@ -11,7 +11,6 @@ const RegisterPage = () => {
     email: "",
     password: "",
   });
-  const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,17 +20,15 @@ const RegisterPage = () => {
     e.preventDefault();
     try {
       await registerUser(formData);
-      setMessage("Registration successful! Redirecting to login...");
-      setTimeout(() => navigate("/login"), 2000);
+      navigate("/login"); // immediate redirection
     } catch (err) {
-      setMessage("Registration failed.");
+      alert("Registration failed."); // or show a styled message if you want
     }
   };
 
   return (
     <div className="register-container">
       <h2 className="register-heading">Register</h2>
-      {message && <p className="message">{message}</p>}
       <form className="register-form" onSubmit={handleSubmit}>
         <input
           type="text"

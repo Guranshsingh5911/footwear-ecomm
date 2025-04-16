@@ -6,6 +6,7 @@ import Header from './components/Header';
 import MainPage from './components/MainPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import AboutPage from './components/About';
 // import HomePage from './pages/HomePage';
 
 import './style/popup.css';
@@ -14,6 +15,7 @@ import './style/header.css';
 import './style/mainStyle.css';
 import './style/footerStyle.css';
 import './style/slider.css';
+import './style/About.css';
 
 function ScrollableApp() {
   const [position, setPosition] = useState(0);
@@ -41,6 +43,7 @@ function ScrollableApp() {
         {/* Define the routes for the auth pages */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/about" element={<AboutPage />} />
       </Routes>
     </div>
   );

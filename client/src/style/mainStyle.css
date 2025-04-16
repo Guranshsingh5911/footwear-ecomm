@@ -37,6 +37,7 @@
     font-weight: 200;
     font-style: normal;
     margin: 0 0 0 0;
+    font-weight: 450;
   }
   
   .ditail-button-a > a {
@@ -54,6 +55,7 @@
     padding-top:12px;
     padding-right: 40px;
     padding-left: 40px;
+    text-decoration: none;
   }
   
   .ditail-button-a {

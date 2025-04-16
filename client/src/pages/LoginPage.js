@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { loginUser } from "../services/apiService";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./LoginPage.css"; // Import the specific styles for LoginPage
 
 const LoginPage = () => {
